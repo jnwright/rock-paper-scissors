@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+ 
+  <script>
+      
+      var playerScore = 0;
+      var computerScore = 0;
+   
+      function computerPlay() {
+          
+          let random = Math.floor(Math.random() * Math.floor(3));
+          if (random === 1) {
+              return "scissors";
+          }
+          
+          else if (random === 2) {
+              return "paper";
+          }
+          
+          else {
+              return "rock";
+          }
+          
+      }
+      
+      
+      function oneRound(playerSelection, computerSelection) {
+          
+          playerSelection = prompt("Select rock, paper, or scissors!").toLowerCase();
+          computerSelection = computerPlay();
+          
+          switch (playerSelection) {
+              case "rock":
+                  if (computerSelection === "rock") {
+                      console.log("It's a tie!");
+                  }
+                  else if (computerSelection === "scissors") {
+                      console.log("You won! The computer chose " + computerSelection + "!");
+                      playerScore++;
+                  }
+                  else {
+                      console.log("The computer won! It chose " + computerSelection + "!");
+                      computerScore++;
+                  }
+                  break;
+                  
+              case "paper":
+                  if (computerSelection === "paper") {
+                      console.log("It's a tie!");
+                  }
+                  else if (computerSelection === "rock") {
+                      console.log("You won! The computer chose " + computerSelection + "!");
+                      playerScore++;
+                  }
+                  else {
+                      console.log("The computer won! It chose " + computerSelection + "!");
+                      computerScore++;
+                  }
+                  break;
+                
+              case "scissors":
+                  if (computerSelection === "scissors") {
+                      console.log("It's a tie!");
+                  }
+                  else if (computerSelection === "paper") {
+                      console.log("You won! The computer chose " + computerSelection + "!");
+                      playerScore++;
+                  }
+                  else {
+                      console.log("The computer won! It chose " + computerSelection + "!");
+                      computerScore++;
+                  }
+          }
+   
+      }
+      
+      function game() {
+          for (i=0; i < 5; i++) {
+              oneRound();
+          }
+          
+          console.log("Game over! The final score is player: " + playerScore + " to computer: " + computerScore + "!");
+      }
+      
+      game();
+      
+      
+  </script>
+</body>
+</html>
