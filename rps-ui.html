@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="utf-8">
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <style>
+    
+        h1 {
+            padding-bottom: 2em;
+            padding-top: 2em;
+        }
+        
+        h2 {
+            padding-top: 2em;
+        }
+        
+        div {
+            text-align: center;
+        }
+        
+        button {
+            border: 1px solid #000;
+            padding: 5px;
+            width: 100%;
+            font-size: 20px;
+            transition: all .2s;
+        }
+        
+        button:hover:enabled {
+            font-style: italic;
+            cursor: pointer;
+            background: skyblue
+        }
+        
+        
+    </style>
+    
+</head>
+    
+<body>
+    
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <h1>Rock, Paper, Scissors</h1>
+
+            </div>
+
+            <div class="col-md-2 offset-md-3">
+                <button id="rock" onClick="oneRound('rock',computerPlay())">Rock</button>
+            </div>
+
+            <div class="col-md-2">
+                <button id="paper" onClick="oneRound('paper',computerPlay())">Paper</button>
+            </div>
+
+            <div class="col-md-2">
+                <button id="scissors" onClick="oneRound('scissors',computerPlay())">Scissors</button>
+            </div>
+            
+            <div class="col-md-12" id="score">
+            
+                <h2 id="title">Score</h2>
+            
+            </div>
+
+        </div>
+    </div>
+    
+ 
+  <script>
+      
+      //creating paragraph
+      const score = document.getElementById('score');
+      const para = document.createElement('p');
+      score.appendChild(para);
+      
+      var playerScore = 0;
+      var computerScore = 0;
+    
+      
+      const secTitle = document.getElementById('title');
+      
+      //creating score paragraphs
+      const pScore = document.createElement('p');
+      const cScore = document.createElement('p');
+      score.appendChild(pScore);
+      score.appendChild(cScore);
+      
+   
+      function computerPlay() {
+          
+          let random = Math.floor(Math.random() * Math.floor(3));
+          if (random === 1) {
+              return "scissors";
+          }
+          
+          else if (random === 2) {
+              return "paper";
+          }
+          
+          else {
+              return "rock";
+          }
+          
+      }
+      
+      
+      function oneRound(playerSelection, computerSelection) {
+        
+          
+          switch (playerSelection) {
+              case "rock":
+                  if (computerSelection === "rock") {
+                      para.textContent = "It's a tie!";
+                  }
+                  else if (computerSelection === "scissors") {
+                      para.textContent = "You won! The computer chose " + computerSelection + "!";
+                      playerScore++;
+                  }
+                  else {
+                      para.textContent = "The computer won! It chose " + computerSelection + "!";
+                      computerScore++;
+                  }
+                  break;
+                  
+              case "paper":
+                  if (computerSelection === "paper") {
+                      para.textContent = "It's a tie!";
+                  }
+                  else if (computerSelection === "rock") {
+                      para.textContent = "You won! The computer chose " + computerSelection + "!";
+                      playerScore++;
+                  }
+                  else {
+                      para.textContent = "The computer won! It chose " + computerSelection + "!";
+                      computerScore++;
+                  }
+                  break;
+                
+              case "scissors":
+                  if (computerSelection === "scissors") {
+                      para.textContent = "It's a tie!";
+                  }
+                  else if (computerSelection === "paper") {
+                      para.textContent = "You won! The computer chose " + computerSelection + "!";
+                      playerScore++;
+                  }
+                  else {
+                      para.textContent = "The computer won! It chose " + computerSelection + "!";
+                      computerScore++;
+                  }
+          }
+          
+          
+      pScore.textContent = "Player: " + playerScore;
+      
+      cScore.textContent = "Computer: " + computerScore;
+    
+          
+          if (computerScore === 5 || playerScore === 5) {
+              para.textContent = "Refresh the browser to play again!";
+              document.getElementById("rock").disabled = true;
+              document.getElementById("paper").disabled = true;
+              document.getElementById("scissors").disabled = true;
+              
+              if (computerScore === 5) {
+                  title.textContent = "The computer won!";
+              }
+              
+              else {
+                  title.textContent = "You won!!!";
+              }
+          }
+   
+      }
+      
+      
+  </script>
+</body>
+</html>
